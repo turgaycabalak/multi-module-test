@@ -10,8 +10,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="producer-service" />
         <module name="log-consumer-service" />
+        <module name="multimodule-common" />
+        <module name="producer-service" />
+        <module name="second-service" />
       </profile>
     </annotationProcessing>
   </component>

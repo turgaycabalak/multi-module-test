@@ -1,0 +1,7 @@
+com\multimodule\repository\IfrsPaymentLogRepository.class
+com\multimodule\config\RabbitMQConfig.class
+com\multimodule\LogConsumerApplication.class
+com\multimodule\service\IfrsPaymentLogService.class
+com\multimodule\model\IfrsPaymentLogPublish.class
+com\multimodule\model\IfrsPaymentLog.class
+com\multimodule\consumer\IfrsPaymentLogConsumer.class

@@ -1,0 +1,7 @@
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\service\IfrsPaymentLogService.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\LogConsumerApplication.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\consumer\IfrsPaymentLogConsumer.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\model\IfrsPaymentLog.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\model\IfrsPaymentLogPublish.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\config\RabbitMQConfig.java
+C:\Users\TurgayÇabalak\Desktop\JavaProjects\multi-module-test\log-consumer-service\src\main\java\com\multimodule\repository\IfrsPaymentLogRepository.java

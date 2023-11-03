@@ -18,6 +18,22 @@ public class ParentDtoTransformer implements TupleTransformer, ResultListTransfo
 
     private Map<Long, ParentDto> parentDtoMap = new LinkedHashMap<>();
 
+
+    /**
+     * @param tuple   The result elements
+     *                1 Long
+     *                "parent-name-1" String
+     *                1 Long
+     *                "child-name-1" String
+     *
+     * @param aliases The result aliases ("parallel" array to tuple)
+     *                "parent_id"
+     *                "parent_name"
+     *                "child_id"
+     *                "child_name"
+     *
+     * @return
+     */
     @Override
     public Object transformTuple(Object[] tuple, String[] aliases) {
         /**

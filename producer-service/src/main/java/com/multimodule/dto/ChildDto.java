@@ -20,4 +20,12 @@ public class ChildDto {
         this.childId = longValue(tuples[aliasToIndexMap.get(ID_ALIAS)]);
         this.childName = tuples[aliasToIndexMap.get(CHILD_NAME_ALIAS)].toString();
     }
+
+    public ChildDto(Long childId, String childName) {
+        this.childId = childId;
+        this.childName = childName;
+    }
+
+    public ChildDto(Object[] tuples) {
+    }
 }

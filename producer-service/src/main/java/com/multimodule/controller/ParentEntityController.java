@@ -1,17 +1,13 @@
 package com.multimodule.controller;
 
-import com.multimodule.dto.ParentDto;
-import com.multimodule.dto.ParentDtoWithChildrenDto;
-import com.multimodule.dto.ParentQueryDto;
+import com.multimodule.dto.*;
 import com.multimodule.model.ParentEntity;
-import com.multimodule.repository.ChildEntityRepository;
-import com.multimodule.repository.ParentDtoTransformer;
-import com.multimodule.repository.ParentEntityRepository;
+import com.multimodule.repository.*;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +25,8 @@ public class ParentEntityController {
     private final ParentEntityRepository parentEntityRepository;
     private final EntityManager entityManager;
     private final ParentDtoTransformer parentDtoTransformer;
+    private final ParentDtoTransformerWithoutAlias parentDtoTransformerWithoutAlias;
+    private final ParentDto3Transformer parentDto3Transformer;
 
 
     /**
@@ -84,6 +82,7 @@ public class ParentEntityController {
     public ResponseEntity<?> findParentById(@PathVariable("id") Long parentId) {
         ParentEntity parentEntity = parentEntityRepository.findParentById(parentId)
                 .orElseThrow(() -> new IllegalStateException("Parent id not found!" + parentId));
+        System.out.println(parentEntity.getParentName());
         return ResponseEntity.ok(parentEntity);
     }
 //------------------------------------------------------------
@@ -100,7 +99,6 @@ public class ParentEntityController {
 
     @GetMapping("/findAllParentDtos")
     public ResponseEntity<?> findAllParentDtos() {
-//        ParentDtoTransformer parentDtoTransformer = new ParentDtoTransformer();
         List<ParentDto> resultList = entityManager.createQuery(
                         "select pe.id as parent_id," +
                                 "pe.parentName as parent_name, " +
@@ -116,7 +114,6 @@ public class ParentEntityController {
 
     @GetMapping("/findParentDtoById/{id}")
     public ResponseEntity<?> findParentDtoById(@PathVariable("id") Long parentId) {
-//        ParentDtoTransformer parentDtoTransformer = new ParentDtoTransformer();
         ParentDto parentDto = (ParentDto) entityManager.createQuery(
                         "select pe.id as parent_id," +
                                 "pe.parentName as parent_name, " +
@@ -132,23 +129,190 @@ public class ParentEntityController {
         return ResponseEntity.ok(parentDto);
     }
 
+    @GetMapping("/findParentDtoById2/{id}")
+    public ResponseEntity<?> findParentDtoById2(@PathVariable("id") Long parentId) {
+        TypedQuery<ParentDto> query = entityManager.createQuery(
+                "select pe.id as parent_id," +
+                        "pe.parentName as parent_name, " +
+                        "ce.id as child_id, " +
+                        "ce.childName as child_name " +
+                        "from ChildEntity ce join ce.parentEntity pe " +
+                        "where pe.id = :parentid", ParentDto.class);
+
+        TypedQuery<ParentDto> parentid = query.setParameter("parentid", parentId);
+
+        Query unwrap = query.unwrap(Query.class);
+
+        Query query1 = unwrap.setTupleTransformer(parentDtoTransformer);
+
+        Object singleResult = unwrap.getSingleResult();//burada parentDtoTransformer (transformTuple methoduna) içine gidiyor
+
+        ParentDto parentDto = (ParentDto) singleResult;
+
+        return ResponseEntity.ok(parentDto);
+    }
+
+    //    @GetMapping("/test/{id}")
+//    public ResponseEntity<?> test(@PathVariable("id") Long parentId) {
+//        ParentDto parentDto = (ParentDto) entityManager.createQuery(
+//                        "select pe.id as parent_id," +
+//                                "pe.parentName as parent_name, " +
+//                                "ce.id as child_id, " +
+//                                "ce.childName as child_name " +
+//                                "from ChildEntity ce join ce.parentEntity pe " +
+//                                "where pe.id = :parentid", ParentDto.class)
+//                .setParameter("parentid", parentId)
+//                .unwrap(Query.class)
+//                .setResultListTransformer(parentDtoTransformer)
+//                .setTupleTransformer(parentDtoTransformer)
+//                .getSingleResult();
+//        return ResponseEntity.ok(parentDto);
+//    }
     @GetMapping("/test/{id}")
     public ResponseEntity<?> test(@PathVariable("id") Long parentId) {
-        ParentDtoTransformer parentDtoTransformer = new ParentDtoTransformer();
         ParentDto parentDto = (ParentDto) entityManager.createQuery(
-                        "select pe.id as parent_id," +
-                                "pe.parentName as parent_name, " +
-                                "ce.id as child_id, " +
-                                "ce.childName as child_name " +
+                        "select pe.id," +
+                                "pe.parentName, " +
+                                "ce.id, " +
+                                "ce.childName " +
                                 "from ChildEntity ce join ce.parentEntity pe " +
                                 "where pe.id = :parentid", ParentDto.class)
                 .setParameter("parentid", parentId)
                 .unwrap(Query.class)
-                .setResultListTransformer(parentDtoTransformer)
-                .setTupleTransformer(parentDtoTransformer)
+//                .setResultListTransformer(parentDtoTransformerWithoutAlias)
+                .setTupleTransformer(parentDtoTransformerWithoutAlias)
                 .getSingleResult();
         return ResponseEntity.ok(parentDto);
     }
+
+    @GetMapping("/test2/{id}")
+    public ResponseEntity<?> test2(@PathVariable("id") Long parentId) {
+        TypedQuery<ParentDto> query = entityManager.createQuery(
+                "select pe.id," +
+                        "pe.parentName, " +
+                        "ce.id, " +
+                        "ce.childName " +
+                        "from ChildEntity ce join ce.parentEntity pe " +
+                        "where pe.id = :parentid", ParentDto.class);
+
+        query.setParameter("parentid", parentId);
+
+        Query unwrap = query.unwrap(Query.class);
+
+        Query query1 = unwrap.setTupleTransformer(parentDtoTransformerWithoutAlias);
+
+        Object singleResult = unwrap.getSingleResult();
+
+        ParentDto parentDto = (ParentDto) singleResult;
+
+
+//        ParentDto parentDto = (ParentDto) entityManager.createQuery(
+//                        "select pe.id," +
+//                                "pe.parentName, " +
+//                                "ce.id, " +
+//                                "ce.childName " +
+//                                "from ChildEntity ce join ce.parentEntity pe " +
+//                                "where pe.id = :parentid", ParentDto.class)
+//                .setParameter("parentid", parentId)
+//                .unwrap(Query.class)
+////                .setResultListTransformer(parentDtoTransformerWithoutAlias)
+//                .setTupleTransformer(parentDtoTransformerWithoutAlias)
+//                .getSingleResult();
+        return ResponseEntity.ok(parentDto);
+    }
+
+    // TODO: No result found for query [select pe.id, pe.parentName, pe.parentDescription from ParentEntity pe where pe.id =:parentId]
+    // for the id which does not exist!
+    @GetMapping("/test3/{id}")
+    public ResponseEntity<?> test3(@PathVariable("id") Long parentId) {
+        TypedQuery<ParentDto3> query = entityManager.createQuery(
+                "select " +
+
+                        "pe.id, " +
+                        "pe.parentName, " +
+                        "pe.parentDescription " +
+
+                        "from ParentEntity pe " +
+                        "where pe.id =:parentId",
+                ParentDto3.class
+        );
+
+        query.setParameter("parentId", parentId);
+
+        Query unwrap = query.unwrap(Query.class);
+        // TODO: no need new transformer object for every request. we can inject it.
+//        unwrap.setTupleTransformer(new ParentDto3Transformer());
+        unwrap.setTupleTransformer(parentDto3Transformer);
+
+        Object singleResult = unwrap.getSingleResult();
+        ParentDto3 singleResult1 = (ParentDto3) singleResult;
+
+        return ResponseEntity.ok(singleResult1);
+    }
+
+    private final ParentDto4WithChildrenTransformer parentDto4WithChildrenTransformer;
+    @GetMapping("/test4/{id}")
+    public ResponseEntity<?> test4(@PathVariable("id") Long parentId) {
+        // Both joining works well..
+//        TypedQuery<ParentDto4WithChildren> query = entityManager.createQuery(
+//                "select " +
+//
+//                        "pe.id, " +
+//                        "pe.parentName, " +
+//                        "pe.parentDescription, " +
+//                        "ce.id," +
+//                        "ce.childName," +
+//                        "ce.childStatus " +
+//
+//                        "from ChildEntity ce " +
+//                        "join ce.parentEntity pe " +
+//                        "where pe.id =:parentId",
+//                ParentDto4WithChildren.class
+//        );
+        TypedQuery<ParentDto4WithChildren> query = entityManager.createQuery(
+                "select " +
+
+                        "pe.id, " +
+                        "pe.parentName, " +
+                        "pe.parentDescription, " +
+                        "ce.id," +
+                        "ce.childName," +
+                        "ce.childStatus " +
+
+                        "from ParentEntity pe " +
+                        "join pe.childEntities ce " +
+                        "where pe.id =:parentId",
+                ParentDto4WithChildren.class
+        );
+
+        query.setParameter("parentId", parentId);
+
+        Query unwrap = query.unwrap(Query.class);
+//        unwrap.setTupleTransformer(new ParentDto4WithChildrenTransformer());
+        unwrap.setTupleTransformer(parentDto4WithChildrenTransformer);
+
+        Object singleResult = unwrap.getSingleResult();
+        ParentDto4WithChildren singleResult1 = (ParentDto4WithChildren) singleResult;
+
+        parentDto4WithChildrenTransformer.setParentDto(new ParentDto4WithChildren());
+        return ResponseEntity.ok(singleResult1);
+    }
+
+    @GetMapping("/testlist")
+    public ResponseEntity<?> testList() {
+        List<ParentDto> resultList = entityManager.createQuery(
+                        "select pe.id," +
+                                "pe.parentName, " +
+                                "ce.id, " +
+                                "ce.childName " +
+                                "from ChildEntity ce join ce.parentEntity pe order by pe.id")
+                .unwrap(Query.class)
+//                .setResultListTransformer(parentDtoTransformerWithoutAlias)
+                .setTupleTransformer(parentDtoTransformerWithoutAlias)
+                .getResultList();
+        return ResponseEntity.ok(resultList);
+    }
+
 
     //---------------------------------------------------------------------------------
     @GetMapping("/findParentDtoWithChildrenDtoById/{id}")//CUSTOM

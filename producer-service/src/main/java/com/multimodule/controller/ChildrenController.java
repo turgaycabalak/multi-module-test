@@ -1,7 +1,6 @@
 package com.multimodule.controller;
 
 import com.multimodule.model.ChildEntity;
-import com.multimodule.model.ParentEntity;
 import com.multimodule.repository.ChildEntityRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

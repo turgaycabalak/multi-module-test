@@ -1,0 +1,5 @@
+com\multimodule\SecondApplication.class
+com\multimodule\controller\SecondController.class
+com\multimodule\feignClients\ParentServiceFeignClient.class
+com\multimodule\service\SecondService.class
+com\multimodule\feignClients\ParentEntityFeign.class

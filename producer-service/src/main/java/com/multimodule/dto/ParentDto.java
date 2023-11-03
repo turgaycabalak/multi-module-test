@@ -23,4 +23,16 @@ public class ParentDto {
         this.parentId = longValue(tuples[aliasToIndexMap.get(ID_ALIAS)]);
         this.parentName = tuples[aliasToIndexMap.get(PARENT_NAME_ALIAS)].toString();
     }
+
+    public ParentDto(Long parentId, String parentName) {
+        this.parentId = parentId;
+        this.parentName = parentName;
+    }
+
+    public ParentDto(Object[] tuples) {
+        //TODO: tüm array'i dön ve value'leri ilgili field'lara set'le.
+    }
+
+    public ParentDto() {
+    }
 }
