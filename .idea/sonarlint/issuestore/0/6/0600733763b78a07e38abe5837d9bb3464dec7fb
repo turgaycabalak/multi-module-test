@@ -1,0 +1,92 @@
+
+M
+java:S3740"/Provide the parametrized type for this generic.(ÒÏ§’8¾º”®Â1
+M
+java:S3740"/Provide the parametrized type for this generic.(âÛÑ”8¾º”®Â1
+M
+java:S3740Æ"/Provide the parametrized type for this generic.(ÒÏ§’8¾º”®Â1
+M
+java:S3740È"/Provide the parametrized type for this generic.(à½ˆ»8¾º”®Â1
+M
+java:S3740ğ"/Provide the parametrized type for this generic.(ÒÏ§’8¾º”®Â1
+M
+java:S3740 "/Provide the parametrized type for this generic.(ÒÏ§’8¾º”®Â1
+k
+java:S1192®"HDefine a constant instead of duplicating this literal "ce.id, " 3 times.(’°’çüÿÿÿÿ8¿º”®Â1
+q
+java:S1192¯"NDefine a constant instead of duplicating this literal "ce.childName " 3 times.(ñÁŞÅÿÿÿÿÿ8¿º”®Â1
+v
+java:S1192g"TDefine a constant instead of duplicating this literal "ce.id as child_id, " 3 times.(©ŸÅ¤øÿÿÿÿ8¿º”®Â1
+
+java:S1192f"_Define a constant instead of duplicating this literal "pe.parentName as parent_name, " 3 times.(şÀ‘¶üÿÿÿÿ8¿º”®Â1
+l
+java:S1192¬"NDefine a constant instead of duplicating this literal "select pe.id," 3 times.(Â±ÿ8¿º”®Â1
+f
+java:S1192z"IDefine a constant instead of duplicating this literal "parentid" 4 times.(æ†òÅ8¿º”®Â1
+w
+java:S1192E"UDefine a constant instead of duplicating this literal "Parent id not found!" 3 times.( İÊüÿÿÿÿ8¿º”®Â1
+s
+java:S1192­"PDefine a constant instead of duplicating this literal "pe.parentName, " 5 times.(í—ÖŒûÿÿÿÿ8¿º”®Â1
+z
+java:S1192y"XDefine a constant instead of duplicating this literal "where pe.id = :parentid" 4 times.(ºíş˜ùÿÿÿÿ8¿º”®Â1
+‰
+java:S1192x"mDefine a constant instead of duplicating this literal "from ChildEntity ce join ce.parentEntity pe " 4 times.(ÚƒŞl8¿º”®Â1
+}
+java:S1192e"[Define a constant instead of duplicating this literal "select pe.id as parent_id," 3 times.(ì§ºªıÿÿÿÿ8¿º”®Â1
+y
+java:S1192h"\Define a constant instead of duplicating this literal "ce.childName as child_name " 3 times.(’ùñü8¿º”®Â1
+C
+java:S1452*"&Remove usage of generic wildcard type.(òª’8âº”®Â1
+H
+java:S14525"&Remove usage of generic wildcard type.(ãçÃ¾üÿÿÿÿ8ãº”®Â1
+C
+java:S1452C"&Remove usage of generic wildcard type.(¶ú¤á8ãº”®Â1
+H
+java:S1452P"&Remove usage of generic wildcard type.(Ç¾Êıúÿÿÿÿ8äº”®Â1
+G	java:S106S"+Replace this use of System.out by a logger.(™Ìƒø8äº”®Â1
+C
+java:S1452Y"&Remove usage of generic wildcard type.(¯¼·Ç8äº”®Â1
+H
+java:S1452c"&Remove usage of generic wildcard type.(ÃŒÀ­şÿÿÿÿ8åº”®Â1
+H
+java:S1452r"&Remove usage of generic wildcard type.(ÙØ…áıÿÿÿÿ8åº”®Â1
+X
+java:S1854":Remove this useless assignment to local variable "query1".(âÛÑ”8åº”®Â1
+Z
+java:S1854Œ"<Remove this useless assignment to local variable "parentid".(¸ïª•8åº”®Â1
+I
+java:S1452ƒ"&Remove usage of generic wildcard type.(‡©Ÿ™üÿÿÿÿ8åº”®Â1
+K
+java:S1481Œ"-Remove this unused "parentid" local variable.(¸ïª•8æº”®Â1
+I
+java:S1481"+Remove this unused "query1" local variable.(âÛÑ”8æº”®Â1
+I
+java:S1452ª"&Remove usage of generic wildcard type.(–Ìõ’ûÿÿÿÿ8æº”®Â1
+Y	java:S125š"<This block of commented-out lines of code should be removed.(òÎ—è8æº”®Â1
+X
+java:S1854È":Remove this useless assignment to local variable "query1".(à½ˆ»8çº”®Â1
+D
+java:S1452»"&Remove usage of generic wildcard type.(ãÀâõ8çº”®Â1
+I
+java:S1481È"+Remove this unused "query1" local variable.(à½ˆ»8çº”®Â1
+Y	java:S125Ú"<This block of commented-out lines of code should be removed.(…¢¥Â8çº”®Â1
+I
+java:S1452á"&Remove usage of generic wildcard type.(Ñˆ˜Ôüÿÿÿÿ8çº”®Â1
+U
+java:S1135Ş"2Complete the task associated to this TODO comment.(¯Šßıÿÿÿÿ8çº”®Â1
+Y	java:S125ò"<This block of commented-out lines of code should be removed.(ÒàÈµ8èº”®Â1
+U
+java:S1135ñ"2Complete the task associated to this TODO comment.(ŞñÔ„ıÿÿÿÿ8èº”®Â1
+I
+java:S1452ı"&Remove usage of generic wildcard type.(Ô•˜éşÿÿÿÿ8èº”®Â1
+^	java:S125"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ8èº”®Â1
+^	java:S125¡"<This block of commented-out lines of code should be removed.(öŠö¥üÿÿÿÿ8èº”®Â1
+I
+java:S1452¬"&Remove usage of generic wildcard type.(”Úæ›ûÿÿÿÿ8éº”®Â1
+D
+java:S1452Å"&Remove usage of generic wildcard type.(ş‡øË8êº”®Â1
+I
+java:S1452Î"&Remove usage of generic wildcard type.(¯Ôæ›ûÿÿÿÿ8êº”®Â1
+Y	java:S125Ğ"<This block of commented-out lines of code should be removed.(ù™¤8êº”®Â1
+Y	java:S125Ö"<This block of commented-out lines of code should be removed.(êÓœÜ8êº”®Â1
+^	java:S125Ü"<This block of commented-out lines of code should be removed.(±ÛÀüÿÿÿÿ8êº”®Â1

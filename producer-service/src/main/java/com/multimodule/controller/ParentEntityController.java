@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.query.Query;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,7 @@ public class ParentEntityController {
     private final ParentDtoTransformer parentDtoTransformer;
     private final ParentDtoTransformerWithoutAlias parentDtoTransformerWithoutAlias;
     private final ParentDto3Transformer parentDto3Transformer;
+    private final ParentDto4WithChildrenTransformer parentDto4WithChildrenTransformer;
 
 
     /**
@@ -250,7 +248,7 @@ public class ParentEntityController {
         return ResponseEntity.ok(singleResult1);
     }
 
-    private final ParentDto4WithChildrenTransformer parentDto4WithChildrenTransformer;
+
     @GetMapping("/test4/{id}")
     public ResponseEntity<?> test4(@PathVariable("id") Long parentId) {
         // Both joining works well..
@@ -313,6 +311,23 @@ public class ParentEntityController {
         return ResponseEntity.ok(resultList);
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    // PARENT PROJECTION
+
+    /**
+     * Hibernate: select p1_0.id,p1_0.parent_description,p1_0.parent_name,p1_0.parent_number,p1_0.parent_status,p1_0.parent_unique from parents p1_0 where p1_0.parent_name=?
+     * Hibernate: select c1_0.parent_id,c1_0.id,c1_0.child_description,c1_0.child_name,c1_0.child_number,c1_0.child_status,c1_0.child_unique from children c1_0 where c1_0.parent_id=?
+     * @param parentName
+     * @return
+     */
+    @GetMapping("/projection1")
+    public ResponseEntity<?> projection1(@RequestParam("parentName") String parentName) {
+        ParentEntityRepository.ParentProjection byParentName = parentEntityRepository.findByParentName(parentName);
+        return ResponseEntity.ok(byParentName);
+    }
+
+    //---------------------------------------------------------------------------------
 
     //---------------------------------------------------------------------------------
     @GetMapping("/findParentDtoWithChildrenDtoById/{id}")//CUSTOM

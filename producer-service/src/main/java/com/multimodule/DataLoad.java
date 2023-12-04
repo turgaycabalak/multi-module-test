@@ -95,7 +95,7 @@ public class DataLoad implements ApplicationRunner {
     private void loadDummyParentsAndChildren() throws InterruptedException {
         if (parentEntityRepository.count() == 0) {
             List<ParentEntity> parentEntities = List.of(
-                    new ParentEntity("parent-unique-1", "parent-name-1", "parent-description-1", BigDecimal.valueOf(1), true),
+                    new ParentEntity("parent-unique-1", "parent-name-1", "parent-description-1", BigDecimal.valueOf(1), false),
                     new ParentEntity("parent-unique-2", "parent-name-2", "parent-description-2", BigDecimal.valueOf(2), true),
                     new ParentEntity("parent-unique-3", "parent-name-3", "parent-description-3", BigDecimal.valueOf(3), true),
                     new ParentEntity("parent-unique-4", "parent-name-4", "parent-description-4", BigDecimal.valueOf(4), true),

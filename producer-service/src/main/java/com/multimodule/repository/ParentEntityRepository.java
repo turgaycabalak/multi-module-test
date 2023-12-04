@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,6 +86,25 @@ public interface ParentEntityRepository extends JpaRepository<ParentEntity, Long
     List<ParentDtoWithChildrenDto> findParentDtoWithChildrenDtoById3();
 
 
+    /**
+     * Projection Interfaces
+     */
+    ParentProjection findByParentName(String parentName);
+
+    interface ParentProjection {
+        Long getId();
+        String getParentName();
+        boolean getParentStatus();
+        List<ChildProjection> getChildEntities();
+
+
+        interface ChildProjection {
+            Long getId();
+            String getChildName();
+            boolean getChildStatus();
+            BigDecimal getChildNumber();
+        }
+    }
 
 
 

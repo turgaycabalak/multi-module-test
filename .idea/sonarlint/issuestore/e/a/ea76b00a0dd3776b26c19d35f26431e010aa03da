@@ -1,0 +1,13 @@
+
+J
+java:S3740"/Provide the parametrized type for this generic.(ü¨¢æþÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(Äÿþû
+V	java:S125&"<This block of commented-out lines of code should be removed.(Ä©“ûÿÿÿÿ
+V	java:S1251"<This block of commented-out lines of code should be removed.(úåôöúÿÿÿÿ
+Q	java:S125D"<This block of commented-out lines of code should be removed.(öÔì«
+\
+java:S1128"FRemove this unused import 'org.hibernate.query.ResultListTransformer'.(Ž ¸®
+j
+java:S1128"ORemove this unused import 'org.aspectj.runtime.internal.Conversions.longValue'.(çÀª»ûÿÿÿÿ
+F
+java:S1068"0Remove this unused "parentDtoMap" private field.(ˆÿ‹
